@@ -64,9 +64,9 @@ Enter root directory path to index:
 
 **Step 2 — Search for any file:**
 ```
-  Search >> B1.pdf
+  Search >> report.pdf
 
-  [+] Found 2 match(es) for "B1.pdf":
+  [+] Found 2 match(es) for "report.pdf":
       [1] D:\DataVault\Clients\2023\Q4\report.pdf
       [2] D:\DataVault\Archive\2022\report.pdf
 ```
