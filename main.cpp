@@ -59,7 +59,7 @@ void drawDivider() {
 
 void printHelp() {
     ConsoleUtils::setForegroundColor(BrightBlack);
-    cout << "  Commands:  (filename) search  |  refresh: re-index  |  exit: quit\n";
+    cout << "  Commands:  (filename) search  |  refresh - re-index  |  exit - quit\n";
     ConsoleUtils::setDefaultColor();
 }
 
@@ -150,7 +150,7 @@ int main() {
     }
 
     ConsoleUtils::setForegroundColor(BrightBlack);
-    cout << "\n  Goodbye.\n\n";
+    cout << "\n  Allah Hafiz.\n\n";
     ConsoleUtils::setDefaultColor();
 
     system("pause>0");
