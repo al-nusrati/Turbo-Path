@@ -6,7 +6,11 @@
 using namespace std;
 namespace fs = std::filesystem;
 
+/*
+    Explanation:
+    The loadDirectory function recursively traverses the given directory path and its subdirectories. For each regular file found, it extracts the filename and full path, then inserts this information into the AVL tree index. This allows for efficient O(log n) search performance when looking up files by name later on.
 
+*/
 void loadDirectory(const fs::path& directoryPath, AVL& index) {
     if (!fs::is_directory(directoryPath)) {
         ConsoleUtils::setForegroundColor(BrightRed);
@@ -29,12 +33,20 @@ void loadDirectory(const fs::path& directoryPath, AVL& index) {
     }
 }
 
+/*
+    Explanation:
+    The refresh method first frees all existing nodes in the tree to clear the current index, then calls the loadDirectory function to repopulate the tree with files from the specified directory. This allows users to update the index if files have been added, removed, or changed since the last indexing operation.
+*/
 void AVL::refresh(string rootPath) {
     freeTree(root);
     root = nullptr;
     loadDirectory(rootPath, *this);
 }
 
+/*
+    Explanation:
+    The drawHeader function is responsible for displaying the application header with a styled rectangle and title.
+*/
 void drawHeader() {
     ConsoleUtils::setForegroundColor(BrightCyan);
     ConsoleUtils::DrawDoubleLineRectangle(1, 1, 50, 4);
@@ -51,18 +63,30 @@ void drawHeader() {
     ConsoleUtils::setDefaultColor();
 }
 
+/*
+    Explanation:
+    The drawDivider function prints a horizontal divider line to visually separate different sections of the console output, enhancing readability.
+*/
 void drawDivider() {
     ConsoleUtils::setForegroundColor(BrightBlack);
     cout << "  -----------------------------------------------------------------\n";
     ConsoleUtils::setDefaultColor();
 }
 
+/*
+    Explanation:
+    The printHelp function displays a list of available commands and their descriptions to the user.
+*/
 void printHelp() {
     ConsoleUtils::setForegroundColor(BrightBlack);
     cout << "  Commands:  (filename) search  |  refresh - re-index  |  exit - quit\n";
     ConsoleUtils::setDefaultColor();
 }
 
+/*
+    Explanation:
+    The printResult function displays the search results for a given filename, showing all matching file paths or an error message if no matches are found.
+*/
 void printResult(node* result, string fname) {
     if (result == nullptr) {
         ConsoleUtils::setForegroundColor(BrightRed);
@@ -85,6 +109,10 @@ void printResult(node* result, string fname) {
     ConsoleUtils::setDefaultColor();
 }
 
+/*
+    Explanation:
+    The main function initializes the application, prompts the user for a root directory path, indexes the files in that directory, and then enters a loop to handle user commands for searching or refreshing the index.
+*/
 int main() {
     
     ConsoleUtils::enableVirtualTerminal();
